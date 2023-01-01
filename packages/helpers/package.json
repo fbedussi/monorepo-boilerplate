@@ -1,0 +1,23 @@
+{
+  "name": "helpers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch",
+    "clean": "rimraf build"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "type": "module",
+  "exports": "./build/index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dependencies": "^0.0.1"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon src/index.ts",
+    "clean": "rimraf build"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "type": "module",
+  "exports": "./build/index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.10.2",
+    "helpers": "*",
+    "model": "*"
+  }
+}
