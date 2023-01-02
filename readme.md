@@ -47,7 +47,7 @@ To be able to run the npm scripts from Lerna make sure that every package has th
 
 To simplify the Lerna configuration male sure that every package has the same build folder name.
 
-### 3. Configure TypeScript
+## 3. Configure TypeScript
 
 - add the tsconfig.json file
 - in the tsconfig.json file add
@@ -61,23 +61,23 @@ To simplify the Lerna configuration male sure that every package has the same bu
 
 listing all the packages's dependencies, the key is the `name` field in the dependency's package.json.
 
-### 4. Install the dependencies
+## 4. Install the dependencies
 
 `npm i`
 
-### 5. Start the project
+## 5. Start the project
 
 `npx lerna run start`
 
-### 6. Build the project
+## 6. Build the project
 
 `npx lerna run build`
 
-### 7. Install a dependency in a package
+## 7. Install a dependency in a package
 
 `npm install nodemon --workspace=back-end`
 
-### 8. Use ESM both on node and on front-end
+## 8. Use ESM both on node and on front-end
 
 If the front end was bootstrapped with vite + react it is already configured to use ESM.
 
@@ -107,3 +107,40 @@ To enable esm with nodemon add a nodemon.json file with this content:
   }
 }
 ```
+
+## 9. Recap of ingredients
+
+### 9.1 Tooling
+
+- Lerna (that uses Nx under the hood): to orchestrate npm scripts and node modules dependencies. Configurations: lerna.json, nx.json
+- Npm workspaces: to handle cross dependencies between the mono repo packages. Configuration: package.json at root level and in each package
+- Vite (that uses ESBuild and Rollup under the hood): to start the front end dev server and to bundle for production. Configuration: vite.config.js in the front end packages
+- Typescript. Configuration tsconfig.json in each package
+- Eslint: linter to catch possible errors. Configuration: .eslintignore, .eslintrc.json
+- Prettier: to automatically enforce a formatting style. Configuration: .prettierignore, .prettierrc
+- pretty-quick: to run prettier on modified files
+- Commitlint: to enforce a commit message style. Configuration: commitlint.config.cjs
+- Git. Configuration: .gitingore and .git/hooks folder for the hooks
+- Rimraf: to delete the build folders before new builds
+- Zod: to centralize type definitions and create TypeScript types, decoder for incoming information, JSON schema for schema enforcement on Mongo and payload type checks with fastify, and schema for form validation on front end
+
+### 9.2 Back end
+
+- Node
+- Ts-node: to use node files written in TypeScript without a build step while developing
+- Nodemon: to restart the backend when files are modified. Configuration: nodemon.json in the back end packages
+- Fastify: to run the node server
+
+### 9.3 Front end
+
+- React
+- Styled-components
+- Ladle: to test presentational component in isolation
+- React i18 next: to handle translations
+- React router
+- Redux toolkit (that uses redux under the hood): to manage centralized state and API calls
+
+### 9.4 Testing
+
+- Jest. To run tests. Configuration: jest-setup.ts
+- Babel: to transpile test files. Configuration babel.config.cjs
